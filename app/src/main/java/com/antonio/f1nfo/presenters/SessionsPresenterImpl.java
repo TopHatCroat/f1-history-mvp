@@ -40,6 +40,7 @@ public class SessionsPresenterImpl implements SessionsPresenter, OnFinishedSessi
     public void onFinished(List<Session> sessions) {
         if(sessionView != null){
             sessionView.setSessions(sessions);
+            sessionView.hideProgress();
         }
     }
 

@@ -46,7 +46,7 @@ public class SessionsActivity extends Activity implements SessionView{
         setContentView(R.layout.sessions_activity);
         ButterKnife.bind(this);
 
-        season = getIntent().getExtras().getParcelable("season");
+        season = getIntent().getExtras().getParcelable(Season.name);
 
         setRecyclerView();
 

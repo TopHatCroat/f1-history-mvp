@@ -87,7 +87,9 @@ public class SeasonsActivity extends Activity implements SeasonsView, AdapterVie
 
     @Override
     public void navigateToSeason(Season season) {
-
+        Intent intent = new Intent(this, SessionsActivity.class);
+        intent.putExtra(Season.name, season);
+        startActivity(intent);
     }
 
     @Override

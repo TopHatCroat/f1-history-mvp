@@ -1,18 +1,16 @@
 package com.antonio.f1nfo.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.antonio.f1nfo.R;
 import com.antonio.f1nfo.models.Season;
 import com.antonio.f1nfo.presenters.SeasonPresenter;
-import com.antonio.f1nfo.presenters.SessionsPresenter;
-
 import java.util.List;
 
 import butterknife.Bind;
@@ -21,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * Created by antonio on 2/7/16.
  */
-public class SeasonsListAdapter extends ArrayAdapter<Season> implements View.OnClickListener {
+public class SeasonsListAdapter extends ArrayAdapter<Season> {
 
     private Context context;
     private List<Season> seasons;
@@ -50,18 +48,16 @@ public class SeasonsListAdapter extends ArrayAdapter<Season> implements View.OnC
         holder.shortSeason.setText(season.getShortSeason());
         holder.seasonTextView.setText(season.getSeason());
 
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Season item", "clicked");
+                presenter.onItemClick(season);
+            }
+        });
+
         return convertView;
     }
-
-    @Override
-    public void onClick(View v) {
-        presenter.onItemClick((Season) v.getTag());
-    }
-//
-//    public interface OnItemClickListener{
-//        void onItemClick(View view, Season season);
-//    }
-
 
     static class ViewHolder {
         @Bind(R.id.short_season_tv_season_card) TextView shortSeason;

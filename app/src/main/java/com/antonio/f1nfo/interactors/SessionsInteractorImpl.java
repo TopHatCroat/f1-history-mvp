@@ -1,14 +1,10 @@
 package com.antonio.f1nfo.interactors;
 
-import android.util.Log;
-
 import com.antonio.f1nfo.api.APIService;
 import com.antonio.f1nfo.api.ServiceGenerator;
 import com.antonio.f1nfo.models.Season;
-import com.antonio.f1nfo.models.SeasonPOJO;
 import com.antonio.f1nfo.models.Session;
 import com.antonio.f1nfo.models.SessionPOJO;
-import com.antonio.f1nfo.presenters.OnFinishedListener;
 import com.antonio.f1nfo.presenters.OnFinishedSessionListener;
 
 import java.util.ArrayList;

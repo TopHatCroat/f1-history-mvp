@@ -22,10 +22,6 @@ import butterknife.ButterKnife;
  * Created by antonio on 2/7/16.
  */
 public class SeasonsListAdapter extends ArrayAdapter<Season> implements View.OnClickListener {
-//    @Bind(R.id.short_season_tv_season_card)
-//    TextView shortSeason;
-//    @Bind(R.id.season_tv_season_card)
-//    TextView seasonTextView;
 
     private Context context;
     private List<Season> seasons;
@@ -41,18 +37,18 @@ public class SeasonsListAdapter extends ArrayAdapter<Season> implements View.OnC
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         final Season season = getItem(position);
+        ViewHolder holder;
 
-        if(convertView == null){
+        if(convertView != null){
+            holder = (ViewHolder) convertView.getTag();
+        } else {
             convertView = LayoutInflater.from(context).inflate(R.layout.season_item, parent, false);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
         }
 
-//        ButterKnife.bind(convertView);
-
-        TextView shortSeason = (TextView) convertView.findViewById(R.id.short_season_tv_season_card);
-        TextView seasonTextView = (TextView) convertView.findViewById(R.id.season_tv_season_card);
-
-        shortSeason.setText(season.getShortSeason());
-        seasonTextView.setText(season.getSeason());
+        holder.shortSeason.setText(season.getShortSeason());
+        holder.seasonTextView.setText(season.getSeason());
 
         return convertView;
     }
@@ -65,4 +61,14 @@ public class SeasonsListAdapter extends ArrayAdapter<Season> implements View.OnC
 //    public interface OnItemClickListener{
 //        void onItemClick(View view, Season season);
 //    }
+
+
+    static class ViewHolder {
+        @Bind(R.id.short_season_tv_season_card) TextView shortSeason;
+        @Bind(R.id.season_tv_season_card) TextView seasonTextView;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
 }

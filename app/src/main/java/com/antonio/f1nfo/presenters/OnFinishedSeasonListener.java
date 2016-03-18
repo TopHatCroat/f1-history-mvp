@@ -7,8 +7,7 @@ import java.util.List;
 /**
  * Created by antonio on 2/7/16.
  */
-public interface OnFinishedListener {
-
+public interface OnFinishedSeasonListener {
     void onFinished(List<Season> seasons);
 
     void onFailiure(String message);

@@ -61,10 +61,6 @@ public class SeasonsActivity extends Activity implements SeasonsView, AdapterVie
         presenter.onDestroy();
 
     }
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//    }
 
     @Override
     public void showProgress() {

@@ -5,7 +5,7 @@ import android.util.Log;
 import com.antonio.f1nfo.api.APIService;
 import com.antonio.f1nfo.api.ServiceGenerator;
 import com.antonio.f1nfo.models.SeasonPOJO;
-import com.antonio.f1nfo.presenters.OnFinishedListener;
+import com.antonio.f1nfo.presenters.OnFinishedSeasonListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +16,7 @@ import retrofit2.Response;
  */
 public class SeasonsInteractorImpl implements SeasonsInteractor {
     @Override
-    public void getItems(final OnFinishedListener listener) {
+    public void getItems(final OnFinishedSeasonListener listener) {
         APIService service = ServiceGenerator.createService(APIService.class);
         Log.i("getItems", "called");
         Call<SeasonPOJO> call = service.loadSeasons();

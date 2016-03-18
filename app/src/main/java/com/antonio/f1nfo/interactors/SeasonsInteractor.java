@@ -1,11 +1,11 @@
 package com.antonio.f1nfo.interactors;
 
-import com.antonio.f1nfo.presenters.OnFinishedListener;
+import com.antonio.f1nfo.presenters.OnFinishedSeasonListener;
 
 /**
  * Created by antonio on 2/7/16.
  */
 public interface SeasonsInteractor {
 
-    void getItems(OnFinishedListener listener);
+    void getItems(OnFinishedSeasonListener listener);
 }

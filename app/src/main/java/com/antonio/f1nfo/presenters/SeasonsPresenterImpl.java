@@ -1,6 +1,5 @@
 package com.antonio.f1nfo.presenters;
 
-import com.antonio.f1nfo.presenters.OnFinishedListener;
 import com.antonio.f1nfo.interactors.SeasonsInteractor;
 import com.antonio.f1nfo.interactors.SeasonsInteractorImpl;
 import com.antonio.f1nfo.views.SeasonsView;
@@ -11,7 +10,7 @@ import java.util.List;
 /**
  * Created by antonio on 2/7/16.
  */
-public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedListener {
+public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedSeasonListener {
     private SeasonsView seasonsView;
     private SeasonsInteractor seasonsInteractor;
 

@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 /**
  * Created by antonio on 2/9/16.
  */
-public class SessionsActivity extends Activity implements SessionView{
+public class SessionsActivity extends Activity implements BasicView<Session>{
     @Bind(R.id.sessions_recycler)
     RecyclerView recyclerView;
     @Bind(R.id.sessions_progress_bar)
@@ -77,13 +77,6 @@ public class SessionsActivity extends Activity implements SessionView{
     }
 
     @Override
-    public void setSessions(List<Session> sessions) {
-        adapter = new SessionsListAdapter(sessions);
-        recyclerView.setAdapter(adapter);
-
-    }
-
-    @Override
     public void showProgress() {
         recyclerView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
@@ -103,9 +96,14 @@ public class SessionsActivity extends Activity implements SessionView{
     }
 
     @Override
-    public void navigateToSeasons() {
-        finish();
+    public void setItems(List<Session> sessions) {
+        adapter = new SessionsListAdapter(sessions);
+        recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void navigateForward(Session parcel) {
+
+    }
 
 }

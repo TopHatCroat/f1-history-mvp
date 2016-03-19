@@ -2,8 +2,8 @@ package com.antonio.f1nfo.presenters;
 
 import com.antonio.f1nfo.interactors.SeasonsInteractor;
 import com.antonio.f1nfo.interactors.SeasonsInteractorImpl;
-import com.antonio.f1nfo.views.SeasonsView;
 import com.antonio.f1nfo.models.Season;
+import com.antonio.f1nfo.views.BasicView;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import java.util.List;
  * Created by antonio on 2/7/16.
  */
 public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedSeasonListener {
-    private SeasonsView seasonsView;
+    private BasicView seasonsView;
     private SeasonsInteractor seasonsInteractor;
 
 
-    public SeasonsPresenterImpl(SeasonsView seasonsView) {
+    public SeasonsPresenterImpl(BasicView seasonsView) {
         this.seasonsView = seasonsView;
         this.seasonsInteractor = new SeasonsInteractorImpl();
     }
@@ -32,7 +32,7 @@ public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedSeasonLi
     @Override
     public void onItemClick(Season season) {
         if(seasonsView != null){
-            seasonsView.navigateToSeason(season);
+            seasonsView.navigateForward(season);
         }
     }
 

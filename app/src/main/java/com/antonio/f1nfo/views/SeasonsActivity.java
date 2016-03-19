@@ -15,7 +15,6 @@ import com.antonio.f1nfo.adapters.SeasonsListAdapter;
 import com.antonio.f1nfo.models.Season;
 import com.antonio.f1nfo.presenters.SeasonPresenter;
 import com.antonio.f1nfo.presenters.SeasonsPresenterImpl;
-import com.antonio.f1nfo.views.SeasonsView;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ import butterknife.ButterKnife;
 /**
  * Created by antonio on 2/7/16.
  */
-public class SeasonsActivity extends Activity implements SeasonsView, AdapterView.OnItemClickListener {
+public class SeasonsActivity extends Activity implements BasicView<Season>, AdapterView.OnItemClickListener {
 
     @Bind(R.id.list_view_seasons)
     ListView listView;
@@ -80,16 +79,16 @@ public class SeasonsActivity extends Activity implements SeasonsView, AdapterVie
     }
 
     @Override
-    public void showMessage(String message) {
-        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
-        snackbar.show();
+    public void navigateForward(Season parcel) {
+        Intent intent = new Intent(this, SessionsActivity.class);
+        intent.putExtra(Season.name, parcel);
+        startActivity(intent);
     }
 
     @Override
-    public void navigateToSeason(Season season) {
-        Intent intent = new Intent(this, SessionsActivity.class);
-        intent.putExtra(Season.name, season);
-        startActivity(intent);
+    public void showMessage(String message) {
+        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
     @Override

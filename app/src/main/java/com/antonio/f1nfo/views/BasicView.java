@@ -5,13 +5,12 @@ import com.antonio.f1nfo.models.Season;
 import java.util.List;
 
 /**
- * Created by antonio on 2/7/16.
+ * Created by antonio on 18.03.16..
  */
-public interface SeasonsView {
-
+public interface BasicView<T> {
     void showProgress();
     void hideProgress();
-    void setItems(List<Season> seasons);
     void showMessage(String message);
-    void navigateToSeason(Season season);
+    void setItems(List<T> items);
+    void navigateForward(T parcel);
 }

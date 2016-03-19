@@ -4,8 +4,7 @@ import com.antonio.f1nfo.interactors.SessionsInteractor;
 import com.antonio.f1nfo.interactors.SessionsInteractorImpl;
 import com.antonio.f1nfo.models.Season;
 import com.antonio.f1nfo.models.Session;
-import com.antonio.f1nfo.presenters.SessionsPresenter;
-import com.antonio.f1nfo.views.SessionView;
+import com.antonio.f1nfo.views.BasicView;
 
 import java.util.List;
 
@@ -13,11 +12,11 @@ import java.util.List;
  * Created by antonio on 2/9/16.
  */
 public class SessionsPresenterImpl implements SessionsPresenter, OnFinishedSessionListener {
-    SessionView sessionView;
+    BasicView sessionView;
     SessionsInteractor sessionsInteractor;
     Season season;
 
-    public SessionsPresenterImpl(SessionView sessionView, Season season) {
+    public SessionsPresenterImpl(BasicView sessionView, Season season) {
         this.sessionView = sessionView;
         this.season = season;
         this.sessionsInteractor = new SessionsInteractorImpl(season);
@@ -39,7 +38,7 @@ public class SessionsPresenterImpl implements SessionsPresenter, OnFinishedSessi
     @Override
     public void onFinished(List<Session> sessions) {
         if(sessionView != null){
-            sessionView.setSessions(sessions);
+            sessionView.setItems(sessions);
             sessionView.hideProgress();
         }
     }

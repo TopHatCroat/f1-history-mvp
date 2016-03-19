@@ -1,11 +1,11 @@
 package com.antonio.f1nfo.api;
 
+import com.antonio.f1nfo.models.raceResult.RaceResultPOJO;
 import com.antonio.f1nfo.models.SeasonPOJO;
 import com.antonio.f1nfo.models.SessionPOJO;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -18,4 +18,8 @@ public interface APIService {
 
     @GET("f1/{season}.json")
     Call<SessionPOJO> loadSessions(@Path("season") String season);
+
+    @GET("f1/{season}/{session}/result.json")
+    Call<RaceResultPOJO> loadRaceResult(@Path("season") String season,
+                                        @Path("session") String session);
 }

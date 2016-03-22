@@ -19,7 +19,7 @@ public interface APIService {
     @GET("f1/{season}.json")
     Call<SessionPOJO> loadSessions(@Path("season") String season);
 
-    @GET("f1/{season}/{session}/result.json")
+    @GET("f1/{season}/{session}/results.json")
     Call<RaceResultPOJO> loadRaceResult(@Path("season") String season,
                                         @Path("session") String session);
 }

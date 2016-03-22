@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import com.antonio.f1nfo.R;
 import com.antonio.f1nfo.models.Session;
+import com.antonio.f1nfo.presenters.RaceResultPresenter;
+import com.antonio.f1nfo.presenters.SessionsPresenter;
+import com.antonio.f1nfo.views.RaceResultView;
 
 import java.util.List;
 import java.util.concurrent.TimeoutException;
@@ -20,6 +23,8 @@ import butterknife.ButterKnife;
  */
 public class SessionsListAdapter extends RecyclerView.Adapter<SessionsListAdapter.ViewHolder> {
     private List<Session> sessions;
+    private SessionsPresenter presenter;
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -42,8 +47,9 @@ public class SessionsListAdapter extends RecyclerView.Adapter<SessionsListAdapte
     }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public SessionsListAdapter(List<Session> sessions) {
+        public SessionsListAdapter(List<Session> sessions, SessionsPresenter presenter) {
             this.sessions = sessions;
+            this.presenter = presenter;
         }
 
         // Create new views (invoked by the layout manager)
@@ -62,12 +68,19 @@ public class SessionsListAdapter extends RecyclerView.Adapter<SessionsListAdapte
         public void onBindViewHolder(ViewHolder holder, int position) {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
-            Session session = sessions.get(position);
+            final Session session = sessions.get(position);
 
             holder.roundNum.setText("Round: " + session.getRound());
             holder.raceName.setText(session.getRaceName());
             holder.circutName.setText(session.getCircuit().getCircuitName());
             holder.date.setText(session.getDate());
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    presenter.onItemClick(session);
+                }
+            });
         }
 
         // Return the size of your dataset (invoked by the layout manager)

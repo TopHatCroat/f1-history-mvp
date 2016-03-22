@@ -1,12 +1,15 @@
 package com.antonio.f1nfo.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by antonio on 2/9/16.
  */
-public class Session {
+public class Session implements Parcelable {
     @SerializedName("season")
     @Expose
     private String season;
@@ -25,6 +28,28 @@ public class Session {
     @SerializedName("date")
     @Expose
     private String date;
+
+    static final public String name = "session";
+
+    protected Session(Parcel in) {
+        season = in.readString();
+        round = in.readString();
+        url = in.readString();
+        raceName = in.readString();
+        date = in.readString();
+    }
+
+    public static final Creator<Session> CREATOR = new Creator<Session>() {
+        @Override
+        public Session createFromParcel(Parcel in) {
+            return new Session(in);
+        }
+
+        @Override
+        public Session[] newArray(int size) {
+            return new Session[size];
+        }
+    };
 
     public String getSeason() {
         return season;
@@ -72,6 +97,20 @@ public class Session {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(season);
+        dest.writeString(round);
+        dest.writeString(url);
+        dest.writeString(raceName);
+        dest.writeString(date);
     }
 
     public class Circuit {

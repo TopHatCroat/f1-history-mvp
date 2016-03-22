@@ -1,7 +1,9 @@
 package com.antonio.f1nfo.views;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -97,13 +99,15 @@ public class SessionsActivity extends Activity implements BasicView<Session>{
 
     @Override
     public void setItems(List<Session> sessions) {
-        adapter = new SessionsListAdapter(sessions);
+        adapter = new SessionsListAdapter(sessions, presenter);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void navigateForward(Session parcel) {
-
+        Intent intent = new Intent(this, RaceResultActivity.class);
+        intent.putExtra(Session.name, parcel);
+        startActivity(intent);
     }
 
 }

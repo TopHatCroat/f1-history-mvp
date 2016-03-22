@@ -31,6 +31,13 @@ public class SessionsPresenterImpl implements SessionsPresenter, OnFinishedSessi
     }
 
     @Override
+    public void onItemClick(Session session) {
+        if(sessionView != null){
+            sessionView.navigateForward(session);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         sessionView = null;
     }

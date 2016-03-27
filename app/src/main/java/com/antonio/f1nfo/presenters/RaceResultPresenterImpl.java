@@ -2,6 +2,7 @@ package com.antonio.f1nfo.presenters;
 
 import com.antonio.f1nfo.interactors.RaceResultInteractor;
 import com.antonio.f1nfo.interactors.RaceResultInteractorImpl;
+import com.antonio.f1nfo.models.Season;
 import com.antonio.f1nfo.models.Session;
 import com.antonio.f1nfo.models.raceResult.Race;
 import com.antonio.f1nfo.views.RaceResultView;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by antonio on 19.03.16..
  */
-public class RaceResultPresenterImpl implements RaceResultPresenter, OnFinishedRaceResultListener {
+public class RaceResultPresenterImpl implements RaceResultPresenter, OnFinishedListener<Race> {
     RaceResultView raceResultView;
     RaceResultInteractor raceResultInteractor;
     Session session;

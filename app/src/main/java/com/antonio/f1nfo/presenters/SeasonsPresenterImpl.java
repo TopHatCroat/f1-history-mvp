@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by antonio on 2/7/16.
  */
-public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedSeasonListener {
+public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedListener<Season> {
     private BasicView seasonsView;
     private SeasonsInteractor seasonsInteractor;
 
@@ -39,6 +39,7 @@ public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedSeasonLi
     @Override
     public void onDestroy() {
         seasonsView = null;
+        seasonsInteractor = null;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedSeasonLi
     }
 
     @Override
-    public void onFailiure(String message) {
+    public void onFailure(String message) {
         seasonsView.showMessage(message);
     }
 

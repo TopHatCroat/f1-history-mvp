@@ -59,7 +59,6 @@ public class SeasonsActivity extends Activity implements BasicView<Season>{
     protected void onDestroy() {
         super.onDestroy();
         presenter.onDestroy();
-
     }
 
     @Override

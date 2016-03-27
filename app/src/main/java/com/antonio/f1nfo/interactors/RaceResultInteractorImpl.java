@@ -5,8 +5,7 @@ import com.antonio.f1nfo.api.ServiceGenerator;
 import com.antonio.f1nfo.models.Session;
 import com.antonio.f1nfo.models.raceResult.Race;
 import com.antonio.f1nfo.models.raceResult.RaceResultPOJO;
-import com.antonio.f1nfo.presenters.OnFinishedRaceResultListener;
-import com.google.android.gms.common.api.Api;
+import com.antonio.f1nfo.presenters.OnFinishedListener;
 
 import java.util.ArrayList;
 
@@ -26,7 +25,7 @@ public class RaceResultInteractorImpl implements RaceResultInteractor {
     }
 
     @Override
-    public void getRace(final OnFinishedRaceResultListener listener) {
+    public void getRace(final OnFinishedListener listener) {
         service = ServiceGenerator.createService(APIService.class);
 
         Call<RaceResultPOJO> call = service.loadRaceResult(session.getSeason(), session.getRound());

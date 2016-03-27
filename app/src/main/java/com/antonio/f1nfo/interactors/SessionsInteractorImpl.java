@@ -5,7 +5,7 @@ import com.antonio.f1nfo.api.ServiceGenerator;
 import com.antonio.f1nfo.models.Season;
 import com.antonio.f1nfo.models.Session;
 import com.antonio.f1nfo.models.SessionPOJO;
-import com.antonio.f1nfo.presenters.OnFinishedSessionListener;
+import com.antonio.f1nfo.presenters.OnFinishedListener;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class SessionsInteractorImpl implements SessionsInteractor {
     }
 
     @Override
-    public void getItems(final OnFinishedSessionListener listener) {
+    public void getItems(final OnFinishedListener listener) {
         APIService service = ServiceGenerator.createService(APIService.class);
         Call<SessionPOJO> call = service.loadSessions(season.getSeason());
 
@@ -36,7 +36,7 @@ public class SessionsInteractorImpl implements SessionsInteractor {
 
             @Override
             public void onFailure(Call<SessionPOJO> call, Throwable t) {
-                listener.onFailiure("Unable to load season");
+                listener.onFailure("Unable to load season");
             }
         });
     }

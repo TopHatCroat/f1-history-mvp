@@ -5,7 +5,7 @@ import android.util.Log;
 import com.antonio.f1nfo.api.APIService;
 import com.antonio.f1nfo.api.ServiceGenerator;
 import com.antonio.f1nfo.models.SeasonPOJO;
-import com.antonio.f1nfo.presenters.OnFinishedSeasonListener;
+import com.antonio.f1nfo.presenters.OnFinishedListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +26,7 @@ public class SeasonsInteractorImpl implements SeasonsInteractor {
     }
 
     @Override
-    public void getItems(final OnFinishedSeasonListener listener) {
+    public void getItems(final OnFinishedListener listener) {
         if(gotEverySeason) return; // nothing more to load
 
         APIService service = ServiceGenerator.createService(APIService.class);
@@ -50,7 +50,7 @@ public class SeasonsInteractorImpl implements SeasonsInteractor {
             @Override
             public void onFailure(Call<SeasonPOJO> call, Throwable t) {
 
-                listener.onFailiure("Data could not be loaded");
+                listener.onFailure("Data could not be loaded");
             }
         });
     }

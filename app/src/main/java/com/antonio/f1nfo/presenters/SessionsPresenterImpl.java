@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by antonio on 2/9/16.
  */
-public class SessionsPresenterImpl implements SessionsPresenter, OnFinishedSessionListener {
+public class SessionsPresenterImpl implements SessionsPresenter, OnFinishedListener<Session> {
     BasicView sessionView;
     SessionsInteractor sessionsInteractor;
     Season season;
@@ -51,7 +51,7 @@ public class SessionsPresenterImpl implements SessionsPresenter, OnFinishedSessi
     }
 
     @Override
-    public void onFailiure(String message) {
+    public void onFailure(String message) {
         sessionView.showMessage(message);
     }
 }

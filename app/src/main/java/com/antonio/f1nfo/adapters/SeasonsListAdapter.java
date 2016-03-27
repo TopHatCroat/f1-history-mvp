@@ -24,18 +24,25 @@ public class SeasonsListAdapter extends ArrayAdapter<Season> {
     private Context context;
     private List<Season> seasons;
     private SeasonPresenter presenter;
+    private int loadedSeasons;
 
     public SeasonsListAdapter(Context context, List<Season> objects, SeasonPresenter presenter) {
         super(context, 0, objects);
         this.context = context;
         this.seasons = objects;
         this.presenter = presenter;
+        this.loadedSeasons = 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         final Season season = getItem(position);
         ViewHolder holder;
+
+        //call presenter for update on last item
+        if(position == seasons.size()-1){
+
+        }
 
         if(convertView != null){
             holder = (ViewHolder) convertView.getTag();
@@ -51,12 +58,15 @@ public class SeasonsListAdapter extends ArrayAdapter<Season> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("Season item", "clicked");
                 presenter.onItemClick(season);
             }
         });
 
         return convertView;
+    }
+
+    public void updateItems(List<Season> seasons) {
+        if(seasons != null) this.seasons.addAll(seasons);
     }
 
     static class ViewHolder {

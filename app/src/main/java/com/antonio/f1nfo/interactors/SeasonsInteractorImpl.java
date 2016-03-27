@@ -15,13 +15,23 @@ import retrofit2.Response;
  * Created by antonio on 2/7/16.
  */
 public class SeasonsInteractorImpl implements SeasonsInteractor {
+    private int currentLatestSeason; //skip
+    private int limit;
+    private boolean gotEverySeason;
+
+    public SeasonsInteractorImpl() {
+        currentLatestSeason = 0;
+        limit = 20;
+        gotEverySeason = false;
+    }
+
     @Override
     public void getItems(final OnFinishedSeasonListener listener) {
-        APIService service = ServiceGenerator.createService(APIService.class);
-        Log.i("getItems", "called");
-        Call<SeasonPOJO> call = service.loadSeasons();
-        Log.i("services", "loaded");
+        if(gotEverySeason) return; // nothing more to load
 
+        APIService service = ServiceGenerator.createService(APIService.class);
+        Call<SeasonPOJO> call = service.loadSeasons(String.valueOf(currentLatestSeason), String.valueOf(limit));
+        currentLatestSeason += limit;
         call.enqueue(new Callback<SeasonPOJO>() {
             @Override
             public void onResponse(Call<SeasonPOJO> call, Response<SeasonPOJO> response) {
@@ -29,8 +39,12 @@ public class SeasonsInteractorImpl implements SeasonsInteractor {
                 SeasonPOJO seasonPOJO = response.body();
                 SeasonPOJO.MRData mrData = seasonPOJO.getMRData();
                 SeasonPOJO.SeasonTable seasonTable = mrData.getSeasonTable();
+                if(seasonTable.getSeasons().size() == 0){
+                    gotEverySeason = true;
+                } else{
+                    listener.onFinished(seasonTable.getSeasons());
+                }
 
-                listener.onFinished(seasonTable.getSeasons());
             }
 
             @Override

@@ -7,6 +7,7 @@ import com.antonio.f1nfo.models.SessionPOJO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by antonio on 2/8/16.
@@ -14,7 +15,7 @@ import retrofit2.http.Path;
 public interface APIService {
 
     @GET("f1/seasons.json")
-    Call<SeasonPOJO> loadSeasons();
+    Call<SeasonPOJO> loadSeasons(@Query("offset") String offset, @Query("limit") String limit);
 
     @GET("f1/{season}.json")
     Call<SessionPOJO> loadSessions(@Path("season") String season);

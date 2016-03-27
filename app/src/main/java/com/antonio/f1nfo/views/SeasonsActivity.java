@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 /**
  * Created by antonio on 2/7/16.
  */
-public class SeasonsActivity extends Activity implements BasicView<Season>, AdapterView.OnItemClickListener {
+public class SeasonsActivity extends Activity implements BasicView<Season>{
 
     @Bind(R.id.list_view_seasons)
     ListView listView;
@@ -34,6 +34,7 @@ public class SeasonsActivity extends Activity implements BasicView<Season>, Adap
     CoordinatorLayout coordinatorLayout;
     SeasonPresenter presenter;
     Snackbar snackbar;
+    SeasonsListAdapter seasonsListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,13 @@ public class SeasonsActivity extends Activity implements BasicView<Season>, Adap
 
     @Override
     public void setItems(List<Season> seasons) {
-        listView.setAdapter(new SeasonsListAdapter(this, seasons, presenter));
+        if(seasonsListAdapter == null){
+            seasonsListAdapter = new SeasonsListAdapter(this, seasons, presenter);
+            listView.setAdapter(seasonsListAdapter);
+        } else {
+            seasonsListAdapter.updateItems(seasons);
+            seasonsListAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -89,12 +96,5 @@ public class SeasonsActivity extends Activity implements BasicView<Season>, Adap
     public void showMessage(String message) {
         snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
         snackbar.show();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(this, SessionsActivity.class);
-        intent.putExtra("season", Integer.toString(position + 1950));
-        startActivity(intent);
     }
 }

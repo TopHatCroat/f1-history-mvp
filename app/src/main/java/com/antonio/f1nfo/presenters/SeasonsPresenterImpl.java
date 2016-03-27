@@ -53,4 +53,9 @@ public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedSeasonLi
     public void onFailiure(String message) {
         seasonsView.showMessage(message);
     }
+
+    @Override
+    public void onUpdate() {
+        seasonsInteractor.getItems(this);
+    }
 }

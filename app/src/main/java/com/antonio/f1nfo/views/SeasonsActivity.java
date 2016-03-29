@@ -43,12 +43,13 @@ public class SeasonsActivity extends Activity implements BasicView<Season>{
         setContentView(R.layout.seasons_activity);
         ButterKnife.bind(this);
         presenter = new SeasonsPresenterImpl(this);
+        presenter.onResume(); //// FIXME: 29.03.16. it should be in onResume, dumbass
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.onResume();
     }
 
     @Override
@@ -87,8 +88,9 @@ public class SeasonsActivity extends Activity implements BasicView<Season>{
                     else return true;
                 }
             });
+        } else {
+            seasonsListAdapter.updateItems(seasons);
         }
-        seasonsListAdapter.updateItems(seasons);
         seasonsListAdapter.notifyDataSetChanged();
     }
 

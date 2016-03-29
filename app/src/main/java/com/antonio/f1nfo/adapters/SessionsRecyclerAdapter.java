@@ -8,12 +8,9 @@ import android.widget.TextView;
 
 import com.antonio.f1nfo.R;
 import com.antonio.f1nfo.models.Session;
-import com.antonio.f1nfo.presenters.RaceResultPresenter;
 import com.antonio.f1nfo.presenters.SessionsPresenter;
-import com.antonio.f1nfo.views.RaceResultView;
 
 import java.util.List;
-import java.util.concurrent.TimeoutException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,7 +18,7 @@ import butterknife.ButterKnife;
 /**
  * Created by antonio on 2/9/16.
  */
-public class SessionsListAdapter extends RecyclerView.Adapter<SessionsListAdapter.ViewHolder> {
+public class SessionsRecyclerAdapter extends RecyclerView.Adapter<SessionsRecyclerAdapter.ViewHolder> {
     private List<Session> sessions;
     private SessionsPresenter presenter;
 
@@ -47,14 +44,14 @@ public class SessionsListAdapter extends RecyclerView.Adapter<SessionsListAdapte
     }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public SessionsListAdapter(List<Session> sessions, SessionsPresenter presenter) {
+        public SessionsRecyclerAdapter(List<Session> sessions, SessionsPresenter presenter) {
             this.sessions = sessions;
             this.presenter = presenter;
         }
 
         // Create new views (invoked by the layout manager)
         @Override
-        public SessionsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public SessionsRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // create a new view
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.session_item, parent, false);

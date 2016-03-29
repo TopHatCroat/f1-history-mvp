@@ -3,7 +3,6 @@ package com.antonio.f1nfo.views;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +13,7 @@ import android.widget.ProgressBar;
 import com.antonio.f1nfo.R;
 import com.antonio.f1nfo.models.Season;
 import com.antonio.f1nfo.models.Session;
-import com.antonio.f1nfo.adapters.SessionsListAdapter;
+import com.antonio.f1nfo.adapters.SessionsRecyclerAdapter;
 import com.antonio.f1nfo.presenters.SessionsPresenter;
 import com.antonio.f1nfo.presenters.SessionsPresenterImpl;
 
@@ -99,7 +98,7 @@ public class SessionsActivity extends Activity implements BasicView<Session>{
 
     @Override
     public void setItems(List<Session> sessions) {
-        adapter = new SessionsListAdapter(sessions, presenter);
+        adapter = new SessionsRecyclerAdapter(sessions, presenter);
         recyclerView.setAdapter(adapter);
     }
 

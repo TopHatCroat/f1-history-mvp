@@ -14,7 +14,6 @@ public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedListener
     private BasicView seasonsView;
     private SeasonsInteractor seasonsInteractor;
 
-
     public SeasonsPresenterImpl(BasicView seasonsView) {
         this.seasonsView = seasonsView;
         this.seasonsInteractor = new SeasonsInteractorImpl();
@@ -25,8 +24,7 @@ public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedListener
         if(seasonsView != null){
             seasonsView.showProgress();
         }
-
-        seasonsInteractor.getItems(this);
+        onUpdate(0, 0);
     }
 
     @Override
@@ -56,7 +54,7 @@ public class SeasonsPresenterImpl implements SeasonPresenter, OnFinishedListener
     }
 
     @Override
-    public void onUpdate() {
-        seasonsInteractor.getItems(this);
+    public void onUpdate(int skip, int totalItemCount) {
+        seasonsInteractor.getItems(skip, totalItemCount, this);
     }
 }

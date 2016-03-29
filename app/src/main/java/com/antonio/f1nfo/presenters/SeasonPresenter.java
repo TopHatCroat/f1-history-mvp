@@ -10,5 +10,5 @@ public interface SeasonPresenter {
     void onResume();
     void onItemClick(Season season);
     void onDestroy();
-    void onUpdate();
+    void onUpdate(int skip, int totalItemCount);
 }

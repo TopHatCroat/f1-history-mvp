@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.antonio.f1nfo.R;
+import com.antonio.f1nfo.adapters.CustomScrollListener;
 import com.antonio.f1nfo.adapters.SeasonsListAdapter;
 import com.antonio.f1nfo.models.Season;
 import com.antonio.f1nfo.presenters.SeasonPresenter;
@@ -74,14 +75,21 @@ public class SeasonsActivity extends Activity implements BasicView<Season>{
     }
 
     @Override
-    public void setItems(List<Season> seasons) {
+    public void setItems(final List<Season> seasons) {
         if(seasonsListAdapter == null){
             seasonsListAdapter = new SeasonsListAdapter(this, seasons, presenter);
             listView.setAdapter(seasonsListAdapter);
-        } else {
-            seasonsListAdapter.updateItems(seasons);
-            seasonsListAdapter.notifyDataSetChanged();
+            listView.setOnScrollListener(new CustomScrollListener() {
+                @Override
+                public boolean onGetMoreItems(int skip, int totalItemCount) {
+                    presenter.onUpdate(skip, totalItemCount);
+                    if(seasons.size() == 0) return false;
+                    else return true;
+                }
+            });
         }
+        seasonsListAdapter.updateItems(seasons);
+        seasonsListAdapter.notifyDataSetChanged();
     }
 
     @Override
